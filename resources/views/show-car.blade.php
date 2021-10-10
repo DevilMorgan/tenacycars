@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="text-center col-4">
                         <div>
-                            <img src="{{url('/images/car-1.jpg')}}" class="img-thumbnail rounded" alt="...">
+                        <img src="{{$record->media->last()->getUrl()}}" class="img-thumbnail rounded" alt="...">
                         </div>
                     </div>
 

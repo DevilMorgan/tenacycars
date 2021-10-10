@@ -14,7 +14,7 @@
                         <div style='height:250px'>
                             @if($result->cover_photo) 
                                 <!-- <img src="{{ Storage::disk('cover_photo_disk')->url($result->cover_photo) }}" class="img-thumbnail rounded" alt="..."> -->
-                                <img src="{{url('/images/car-1.jpg')}}" class="img-thumbnail rounded" alt="...">
+                                <img src="{{$result->media->last()->getUrl()}}" class="img-thumbnail rounded" alt="...">
                             @else
                             <img src="{{url('/images/car-1.jpg')}}" class="img-thumbnail rounded" alt="...">
                             @endif
