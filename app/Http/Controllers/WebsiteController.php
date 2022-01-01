@@ -41,30 +41,31 @@ class WebsiteController extends Controller
         $client_id = DB::table('websites')->max('id');
         $client_id = $client_id ? $client_id+1 : 1;
         // dd($client_id);
-        dump("Please Wait, Domain Creation inprogress!!!");
+        dump("Lütfen Bekleyiniz, Domain kaydı yapılıyor.  inprogress!!!");
         
         $website->uuid = "tenancycars_client".$client_id;
         app(WebsiteRepository::class)->create($website);
         // dd($website->uuid); // Unique id
 
         $hostname = new Hostname;
-        $hostname->fqdn = 'client'.$client_id.'.tenancycars.dev1';
+        $hostname->fqdn = 'company'.$client_id.'.isp.test';
         $hostname = app(HostnameRepository::class)->create($hostname);
         app(HostnameRepository::class)->attach($hostname, $website);
         // dd($website->hostnames); // Collection with $hostname
         ;
         echo "
             <br />
-            Tenancy Created..
+            Hesap başarıyla oluşturuldu..
             <br />
-            Steps to Follow:
+            Bir sonraki aşama için klavuzu takip ediniz.:
             <br />
-            Run: php artisan tenancy:db:seed --website_id={$website->id} <br />
-            Configure {$hostname->fqdn} Domain in 'hosts' file [C:\Windows\System32\drivers\etc] <br />
-            Run: php artisan serve --host={$hostname->fqdn} <br />
-            Same like Create more than one client and try <br />
+            Çalıştır : php artisan tenancy:db:seed --website_id={$website->id} <br />
+            DNS Alan adı kayıdınız {$hostname->fqdn} domaini için 'hosts' dosyanızdan güncelleyiniz. [C:\Windows\System32\drivers\etc] <br />
+            Çalıştır: php artisan serve --host={$hostname->fqdn} <br />
+			
+            işlem tamamlandı. <br />
         ";
-        dd("Thank You...");
+        dd("Teşekkürler...");
         // dd($website->uuid, $hostname->fqdn, 'Created, Kindly Configure in your Host File');
 
     }

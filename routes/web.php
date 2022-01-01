@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/olustur', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/show/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('show-car');
 
 Route::get('/create/website', [App\Http\Controllers\WebsiteController::class, 'create'])->name('create-website');
@@ -36,6 +36,6 @@ Route::prefix('seller')->middleware(['auth:sanctum'])->group(function() {
     Route::get('/mycars/{id}', [App\Http\Controllers\Seller\DashboardController::class, 'delete'])->name('delete-car');
     Route::get('/mycars/{id}/restore', [App\Http\Controllers\Seller\DashboardController::class, 'restore'])->name('restore-car');
     
-    Route::get('/usedcars', [App\Http\Controllers\UsedCarController::class, 'index'])->name('usedcars');
+  //  Route::get('/usedcars', [App\Http\Controllers\UsedCarController::class, 'index'])->name('usedcars');
 });
 

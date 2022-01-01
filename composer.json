@@ -6,22 +6,75 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "ext-simplexml": "*",
+        "ext-zip": "*",
+        "artem-schander/l5-modular": "^2.1",
         "barryvdh/laravel-cors": "^2.0",
+        "barryvdh/laravel-debugbar": "^3.6",
+        "bugsnag/bugsnag-laravel": "^2.21",
+        "consoletvs/charts": "^7.2",
+        "crodas/influx-php": "^0.9.1",
+        "doctrine/dbal": "^2.11",
+        "evilfreelancer/routeros-api-php": "^1.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "hyn/multi-tenant": "^5.7",
+        "intervention/image": "^2.5",
         "laravel/framework": "^8.54",
+        "laravel/legacy-factories": "^1.1",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "laravelcollective/html": "^6.2",
-        "spatie/laravel-medialibrary": "^9.8"
+        "laraveldaily/laravel-charts": "^0.1.24",
+        "maatwebsite/excel": "^3.1",
+        "mews/purifier": "^3.2",
+		
+		 "ext-intl": "*",
+         
+
+	  
+		
+        "nao-pon/flysystem-google-drive": "^1.1",
+        "nelisys/snmp": "^1.0",
+        "nwidart/themify": "*",
+        "orangehill/iseed": "^3.0",
+        "phpoffice/phpspreadsheet": "^1.15",
+     
+        "simplesoftwareio/simple-qrcode": "~4",
+        "spatie/laravel-activitylog": "^3.17",
+        "spatie/laravel-backup": "^6.16",
+        "spatie/laravel-medialibrary": "^9.8",
+        "spatie/laravel-permission": "^5.13",
+        "spatie/laravel-sitemap": "^5.8",
+        "typicms/nestablecollection": "^1.1",
+        "uxweb/sweet-alert": "^2.0",
+        "yajra/laravel-datatables-buttons": "^4.10",
+        "yajra/laravel-datatables-editor": "^1.24",
+        "yajra/laravel-datatables-oracle": "~9.18",
+        "yoeunes/toastr": "^1.2"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.6",
+        "pusher/pusher-php-server": "~4.0",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
+		     
+        "barryvdh/laravel-dompdf": "^0.9.0",
+        "barryvdh/laravel-ide-helper": "^2.10",
+        "beyondcode/laravel-query-detector": "^1.5",
+  
+		   "infyomlabs/adminlte-templates": "^3.0",
+        "infyomlabs/generator-builder": "dev-master",
+        "infyomlabs/laravel-generator": "^3.0",
+		
+		
+	
+      "beyondcode/laravel-dump-server": "^1.7",
+        "phpseclib/phpseclib": "~2.0",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3"
@@ -44,14 +97,35 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "clear-all": [
+            "@php artisan clear-compiled",
+            "@php artisan cache:clear",
+            "@php artisan route:clear",
+            "@php artisan view:clear",
+            "@php artisan config:clear",
+            "composer dumpautoload -o"
+        ],
+        "cache-all": [
+            "@php artisan config:cache",
+            "@php artisan route:cache"
+        ],
+        "reset": [
+            "composer clear-all",
+            "composer cache-all"
+        ],
+        "test": "@php artisan test --parallel",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     },
     "extra": {
         "laravel": {

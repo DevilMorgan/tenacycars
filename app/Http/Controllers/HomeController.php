@@ -46,5 +46,16 @@ class HomeController extends Controller
         // dd($media[0]->getFullUrl());
         return view('show-car', ['record'=>$record]);
     }
+	
+	
+	    public function clearCache()
+    {
+        \Artisan::call('cache:clear');
+
+        return view('clear-cache');
+    }
+	
+	
+	
 
 }
